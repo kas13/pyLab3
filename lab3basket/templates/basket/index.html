@@ -11,6 +11,15 @@
 <h1>Basket</h1>
 <div class="large-6">
     <h2> form index </h2>
+    <form action="box" method="post">{% csrf_token  %}
+            {% for nm in  information  %}
+                <li>
+                    <input type="checkbox" name="checkbox" value="{{ forloop.counter}}" />{{ nm}} <br/>
+                </li>
+            {% endfor %}
+{#        {{ form }}#}
+        <button type="submit" class="btn btn-primary" value="box"> box </button>
+    </form>
 </div>
 <div id="content">
     {% block content %} {% endblock %}

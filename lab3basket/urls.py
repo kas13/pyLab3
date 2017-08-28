@@ -3,6 +3,7 @@ from django.contrib import admin
 from lab3basket import views
 
 urlpatterns = [
-    url(r'^', views.first),
-    # url(r'^add/', views.addbasket)
+    url(r'^box$', views.box, name='box'),
+    url(r'^', views.first, name='first'),
+
 ]
