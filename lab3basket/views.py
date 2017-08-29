@@ -8,6 +8,7 @@ import os
 import json
 import sys
 
+from files.myrm import *
 from files.Load_config import Load_config
 config = Load_config()
 basket_path = config['trash_path']
@@ -18,16 +19,8 @@ log_path = config['log_path']
 
 
 def first(request):
-    print "load"
-    listdir = os.listdir(basket_path)
-    lines = getinfo()
-    information = []
-    numb = []
-    for line in lines:
-        info = json.loads(line)
-        print lines.index(line)
-        numb.append(int(information.__len__()))
-        information.append("filename: {0}  old path: {1}".format(info['fileName'], info['oldPath'])+"\n")
+    print "first"
+    information = update_basket()
     form = BasketForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         data = form.cleaned_data
@@ -48,6 +41,7 @@ def addbasket(request):
 
 def box(request):
     print "box"
+    information = update_basket()
     copypost = request.POST.copy()
     items = copypost.pop('checkbox')
     lines = getinfo()
@@ -56,10 +50,21 @@ def box(request):
         item = lines.__getitem__(s-1)
         item = json.loads(item)
         print item['oldPath']
+        restore_file_django(basket_path, info_path, item['fileName'], item['conflict'])
     #print request.POST.get('chbox')
     if request.POST:
         print request.POST
+        information = update_basket()
     return render(request, 'basket/base.html', locals())
+
+
+def update_basket():
+    lines = getinfo()
+    information = []
+    for line in lines:
+        info = json.loads(line)
+        information.append("filename: {0}  old path: {1}".format(info['fileName'], info['oldPath']) + "\n")
+    return information
 
 
 def getinfo(info_path=info_path):
