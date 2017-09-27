@@ -8,11 +8,13 @@ import jsonfield
 
 
 class BasketModel(models.Model):
-    basket_name = models.CharField(max_length=123)
-    #files = models.TextField()
+    basket_name = models.CharField(max_length=123, verbose_name="basket name")
+    path = models.CharField(max_length=123, verbose_name="basket path", default="/home/student/basket")
 
     class Meta:
         db_table = "Basket"
 
     def __str__(self):
-        return self.basket_name
+        return self.path
+
+

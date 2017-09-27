@@ -1,0 +1,14 @@
+{% extends "basket/index.html" %}
+{% block content %}
+    <div class="large-6">
+    <h2> form addbasket</h2>
+        <form class="actions" action="add_new_basket" method="post">{% csrf_token %}
+            <input class="input" type="text" name="basket_name"> basket name</input><br/>
+            <input class="input" type="text" name="basket_path"> basket path</input><br/>
+            <input class="button" type="submit" name="add_basket" value="add_new_basket"/>
+        </form>
+
+    </div>
+
+
+{% endblock %}

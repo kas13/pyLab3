@@ -9,6 +9,7 @@
 </head>
 <body>
 <h1>Basket</h1>
+
 <div class="large-6">
     <h2> form index </h2>
     <form action="box" method="post">{% csrf_token  %}
@@ -17,11 +18,37 @@
                     <input type="checkbox" name="checkbox" value="{{ forloop.counter}}" />{{ nm}} <br/>
                 </li>
             {% endfor %}
-        <button type="submit" class="btn btn-primary" value="box"> box </button>
+        <button type="submit" class="btn btn-primary" value="box"> restore </button>
+    </form>
+    <hr/>
+
+</div>
+
+<div class="row1">
+    {% if basket_models %}
+        <div class="actionlist">
+            {% for basket in basket_models %}
+                <a href="{% url 'view_basket' basket.id  %}" > {{ basket.id }} </a>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+<div class="off-canvas-wrapper">
+     <form class="actions" method="post">
+        {% csrf_token %}
+         <input class="input" type="text" name="regex"> regex</input>
+         <input class="button" type="submit" value="Add" name="del_regex"/><br/>
+         <input title="title" class="input" type="text" name="file_path"> path to file</input>
+         <input class="button" type="submit" value="Add"  name="delete"/>
     </form>
 </div>
+<br/>
+
 <div id="content">
     {% block content %} {% endblock %}
+</div>
+<div id="content">
+    {% block content2 %} {% endblock %}
 </div>
 
 

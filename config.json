@@ -1,0 +1,10 @@
+{
+  "trash_path": "/home/student/Pyc/lab2/Basket/",
+  "log_path": "/home/student/Pyc/lab2/files/mylog.log",
+  "information_path":"/home/student/lab3/files/information.json",
+  "dry": false,
+  "day": "3",
+  "size": "100000",
+  "confirm": false,
+  "silent": false
+}
